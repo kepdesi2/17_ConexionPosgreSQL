@@ -1,0 +1,25 @@
+CREATE OR REPLACE FUNCTION verelena4()
+RETURNS setof elena AS 
+$BODY$
+DECLARE 
+    r elena%ROWTYPE; -- Variable local del tipo fila para la tabla _user.
+
+    -- La parte "%ROWTYPE" es opcional para las versiones actuales de PG.
+
+   -- r_id _user._id%TYPE;  No la vamos a usar pero incluimos esta línea
+
+    -- a modo de ejemplo para la definición de una variable local
+
+    -- heredando el tipo de datos de una columna concreta de tabla/vista.
+
+BEGIN
+
+for r in select * from elena loop
+    return next r;
+end loop;
+
+end;
+
+$BODY$
+LANGUAGE plpgsql VOLATILE
+COST 100;
